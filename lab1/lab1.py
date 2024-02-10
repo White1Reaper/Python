@@ -121,3 +121,20 @@ def find_dates():
     dates = re.findall(pattern, text)
     print(dates)
 
+# Задание 6. Дана строка. Необходимо подсчитать количество чисел в этой строке,
+# значение которых больше 5.
+
+def count_nums():
+    s=str(input("Введите строку: "))
+    num = ""
+    c=0
+    for symb in s:
+        if(symb.isdigit()):
+            num+=symb
+        else:
+            if(num!="" and int(num)>5):
+                c+=1
+                num=""
+            else:
+                m=""
+    print(c)
