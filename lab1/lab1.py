@@ -138,3 +138,15 @@ def count_nums():
             else:
                 m=""
     print(c)
+
+# Задание 7. Дана строка. Необходимо найти те символы кириллицы, которые не
+# задействованы в данной строке.
+def find_symb():
+    s=str(input("Введите строку: "))
+    for i in range(ord('а'), ord('я') + 1):
+        c=1
+        for symb in s:
+            if(i==ord(symb)):
+                c=0
+        if(c):
+            print(chr(i))
