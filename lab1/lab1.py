@@ -150,3 +150,20 @@ def find_symb():
                 c=0
         if(c):
             print(chr(i))
+
+# Задание 8. Дана строка. Необходимо найти максимальное из имеющихся в ней
+# натуральных чисел.
+def find_max():
+    s=str(input("Введите строку: "))
+    max_num=0
+    num = ""
+    for symb in s:
+        if(symb.isdigit()):
+            num+=symb
+        else:
+            if(num!="" and int(num)>max_num):
+                max_num=int(num)
+                num=""
+            else:
+                num=""
+    print(max_num)
