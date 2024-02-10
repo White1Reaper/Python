@@ -82,9 +82,20 @@ def shake_symbs():
             w1 += word[len(word) - 1]
             print(w1)
 
+# задание 3. Дана строка в которой содержатся цифры и буквы. Необходимо
+# расположить все цифры в начале строки, а буквы – в конце.
 
+def div():
+    a = ""
+    b = ""
+    text = str(input("Введите строку: "))
+    for symb in text:
 
-
+        if (symb.isdigit()):
+            a += symb
+        else:
+            b += symb
+    print(a + b)
 
 
 
