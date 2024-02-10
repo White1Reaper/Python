@@ -97,6 +97,14 @@ def div():
             b += symb
     print(a + b)
 
+# Задание 4. Дана строка в которой записаны слова через пробел. Необходимо
+# перемешать все слова в случайном порядке (спонсор задачи Мастер Йода).
 
-
-
+import random
+def shake_words():
+    text = str(input("Введите строку: "))
+    words = text.split()
+    random.shuffle(words)
+    s = ""
+    for h in words:
+        s += h + " "
