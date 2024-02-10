@@ -238,3 +238,38 @@ def sort_diff_freq():
                 diff_freq[j]=r
     print(strs)
     print(diff_freq)
+
+# Задание 12. Отсортировать строки в порядке увеличения квадратичного отклонения частоты
+# встречаемости самого часто встречаемого в строке символа от частоты его
+# встречаемости в текстах на этом алфавите.
+
+def find_med_val(a):
+    a.sort(key=len)
+    n = len(a)
+    mid = n // 2
+    if n % 2 == 0:
+        return (len(a[mid - 1]) + len(a[mid])) / 2
+    else:
+        return len(a[mid])
+
+def sort_med_val():
+    x = str(input("Введите строку: "))
+    a = []
+    while(x):
+
+        a.append(x)
+        x = str(input("Введите строку: "))
+    median_value = find_med_val(a)
+    print(sorted(a, key=lambda x: abs(len(x) - median_value)))
+
+
+
+
+
+
+
+
+
+
+
+
