@@ -1,3 +1,8 @@
+
+# Тангиев Руслан, 37/1
+
+# Лабораторная работа №1. Вариант 12
+
 # задание 1
 
 # функция 1. Найти сумму непростых делителей числа.
@@ -53,6 +58,29 @@ def num_count(x):
     return count
 
 
+# задание 2.  Дана строка в которой записаны слова через пробел. Необходимо
+# перемешать в каждом слове все символы в случайном порядке кроме первого
+# и последнего.
+
+import random
+def shake_symbs():
+    text=str(input("Введите строку: "))
+    words = text.split()
+    for word in words:
+        if (len(word) <= 3):
+            print(word)
+        else:
+            w = ""
+            w1 = ""
+            w1 += word[0]
+            for i in range(1, len(word) - 1):
+                w += word[i]
+            w = list(w)
+            random.shuffle(w)
+            w = ''.join(w)
+            w1 += w
+            w1 += word[len(word) - 1]
+            print(w1)
 
 
 
