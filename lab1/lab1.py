@@ -167,3 +167,19 @@ def find_max():
             else:
                 num=""
     print(max_num)
+
+# Задание 9. Прочитать список строк с клавиатуры. Упорядочить по длине
+# строки.
+def sort_str_list():
+    x=str(input("Введите строку: "))
+    a=[]
+    while(x):
+        a.append(x)
+        x = str(input("Введите строку: "))
+    for i in range(len(a)-1):
+        for j in range(i+1,len(a)):
+            if(len(a[i])>len(a[j])):
+                t=a[i]
+                a[i]=a[j]
+                a[j]=t
+    print(a)
