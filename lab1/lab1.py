@@ -183,3 +183,22 @@ def sort_str_list():
                 a[i]=a[j]
                 a[j]=t
     print(a)
+
+# Задание 10. Дан список строк с клавиатуры. Упорядочить по количеству
+# слов в строке
+
+def sort_str_count_list():
+    x=str(input("Введите строку: "))
+    a=[]
+    while(x):
+        a.append(x)
+        x = str(input("Введите строку: "))
+    for i in range(len(a)-1):
+        for j in range(i+1,len(a)):
+            c1=a[i].count(" ")
+            c2=a[j].count(" ")
+            if(c1>c2):
+                t=a[i]
+                a[i]=a[j]
+                a[j]=t
+    print(a)
