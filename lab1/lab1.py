@@ -202,3 +202,39 @@ def sort_str_count_list():
                 a[i]=a[j]
                 a[j]=t
     print(a)
+
+# Задание 11. Отсортировать строки В порядке увеличения разницы между частотой наиболее часто
+# встречаемого символа в строке и частотой его появления в алфавите.
+
+def sort_diff_freq():
+    x=str(input("Введите строку: "))
+    a=[]
+    b=[0.062,0.014,0.038,0.013,0.025,0.072,0.072,0.007,0.016,0.062,0.010,0.028,0.065,0.026,0.053,0.090,0.023,0.040,0.045,0.053,0.021,0.002,0.009,0.004,0.012,0.006,0.003,0.014,0.016,0.014,0.003,0.006,0.018]
+    strs=[]
+    diff_freq=[]
+    while(x):
+        strs.append(x)
+        x = str(input("Введите строку: "))
+    for i in range(ord('а'), ord('я') + 1):
+        a.append(chr(i))
+    a.insert(6,"ё")
+    for word in strs:
+        max_freq=0
+        index_max_symb=0
+        for symb in word:
+            freq_symb=word.count(symb)/len(word)
+            if(max_freq<freq_symb):
+                max_freq=freq_symb
+                index_max_symb=a.index(symb)
+        diff_freq.append(max_freq-b[index_max_symb])
+    for i in range(len(diff_freq)-1):
+        for j in range(i+1,len(diff_freq)):
+            if(diff_freq[i]>diff_freq[j]):
+                t=strs[i]
+                strs[i]=strs[j]
+                strs[j]=t
+                r=diff_freq[i]
+                diff_freq[i]=diff_freq[j]
+                diff_freq[j]=r
+    print(strs)
+    print(diff_freq)
