@@ -239,9 +239,9 @@ def sort_diff_freq():
     print(strs)
     print(diff_freq)
 
-# Задание 12. Отсортировать строки в порядке увеличения квадратичного отклонения частоты
-# встречаемости самого часто встречаемого в строке символа от частоты его
-# встречаемости в текстах на этом алфавите.
+# Задание 12. Отсортировать строки в порядке увеличения медианного значения выборки строк (прошлое
+# медианное значение удаляется из выборки и производится поиск нового
+# медианного значения).
 
 def find_med_val(a):
     a.sort(key=len)
@@ -262,9 +262,46 @@ def sort_med_val():
     median_value = find_med_val(a)
     print(sorted(a, key=lambda x: abs(len(x) - median_value)))
 
+# Задание 13. Отсортировать строки в порядке увеличения квадратичного отклонения между наибольшим
+# ASCII-кодом символа строки и разницы в ASCII-кодах пар зеркально
+# расположенных символов строки (относительно ее середины).
 
+def mid_sqr_dev():
+    x = str(input("Введите строку: "))
+    a = []
+    while(x):
 
+        a.append(x)
+        x = str(input("Введите строку: "))
+    b=[]
+    for word in a:
+        max_ascii=0
+        for i in word:
+            if(ord(i)>max_ascii):
+                max_ascii=ord(i)
+        diff_mirr_couple=0
+        first_half = word[:len(word) // 2]
+        second_half = word[len(word) // 2:]
 
+        if len(word) % 2 == 1:
+            middle = word[len(word) // 2]
+            diff_mirr_couple = abs(ord(middle) - ord(middle))
+        else:
+            for i in range(len(first_half)):
+                diff_mirr_couple += abs(ord(first_half[i]) - ord(second_half[len(second_half) - i - 1]))
+
+        b.append(pow(max_ascii-diff_mirr_couple,2))
+    for i in range(len(a) - 1):
+        for j in range(i + 1, len(a)):
+            if (b[i] > b[j]):
+                t = a[i]
+                a[i] = a[j]
+                a[j] = t
+                u = b[i]
+                b[i] = b[j]
+                b[j] = u
+    print(a)
+    print(b)
 
 
 
