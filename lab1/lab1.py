@@ -108,3 +108,16 @@ def shake_words():
     s = ""
     for h in words:
         s += h + " "
+        print(s)
+
+# Задание 5. Дана строка. Необходимо найти все даты, которые описаны в
+# виде "31 февраля 2007".
+
+import re
+
+def find_dates():
+    text = str(input("Введите строку: "))
+    pattern = r"\b(\d{1,2} (?:января|февраля|марта|апреля|мая|июня|июля|августа|сентября|октября|ноября|декабря) \d{4})\b"
+    dates = re.findall(pattern, text)
+    print(dates)
+
