@@ -333,6 +333,38 @@ def sort_count_mirror():
     print(a)
     print(b)
 
+# Задание 15. Дан целочисленный массив. Необходимо переставить в обратном 
+# порядке элементы массива, расположенные между его минимальным и 
+# максимальным элементами.
+
+def repl_el_mass():
+    x = input("Введите число: ")
+    a = []
+    while (x != ""):
+        if x.isdigit():
+            a.append(int(x))
+        else:
+            print("Неверный ввод!")
+        x = input("Введите число: ")
+
+    index_max = 0
+    max_el = a[0]
+    index_min = 0
+    min_el = a[0]
+
+    for i in range(len(a)):
+        if a[i] > max_el:
+            max_el = a[i]
+            index_max = i
+        if a[i] < min_el:
+            min_el = a[i]
+            index_min = i
+    down_index = min(index_min, index_max)
+    top_index = max(index_min, index_max)
+    print("Исходный массив:", a)
+    reversed_section = a[down_index + 1:top_index][::-1]
+    a = a[:down_index + 1] + reversed_section + a[top_index:]
+    print("Измененный массив:", a)
 
 
 
