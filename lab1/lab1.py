@@ -436,3 +436,22 @@ def index_max_count_el():
         if(a[i]==el):
             b.append(i+1)
     print(b)
+
+# Задание 19. Дан список. Построить массив из элементов, делящихся на свой 
+# номер и встречающихся в исходном массиве 1 раз.
+
+def index_max_count_el():
+    x = input("Введите число: ")
+    a = []
+    while (x != ""):
+        if x.isdigit():
+            a.append(int(x))
+        else:
+            print("Неверный ввод!")
+        x = input("Введите число: ")
+
+    b=[]
+    for i in range(len(a)):
+        if(a[i]%(i+1)==0 and a.count(a[i])==1):
+            b.append(a[i])
+    print(b)
