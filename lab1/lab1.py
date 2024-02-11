@@ -366,7 +366,7 @@ def repl_el_mass():
     a = a[:down_index + 1] + reversed_section + a[top_index:]
     print("Измененный массив:", a)
 
-# Задание 16. Дан целочисленный массив. Необходимо найти два наибольших 
+# Задание 16. Дан целочисленный массив. Необходимо найти два наибольших
 # элемента.
 
 def find_2_max():
@@ -392,3 +392,23 @@ def find_2_max():
     print(max1)
     print(max2)
 
+# Задание 17. Дан целочисленный массив. Необходимо найти максимальный 
+# нечетный элемент.
+
+def find_nech_max():
+    x = input("Введите число: ")
+    a = []
+    while (x != ""):
+        if x.isdigit():
+            a.append(int(x))
+        else:
+            print("Неверный ввод!")
+        x = input("Введите число: ")
+    max1=-2
+    for i in range(len(a)):
+        if(a[i]>max1 and a[i]%2):
+            max1=a[i]
+    if(max1==-2):
+        print("нечётные числа отсутствуют!")
+    else:
+        print(max1)
