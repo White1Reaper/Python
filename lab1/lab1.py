@@ -392,7 +392,7 @@ def find_2_max():
     print(max1)
     print(max2)
 
-# Задание 17. Дан целочисленный массив. Необходимо найти максимальный 
+# Задание 17. Дан целочисленный массив. Необходимо найти максимальный
 # нечетный элемент.
 
 def find_nech_max():
@@ -412,3 +412,27 @@ def find_nech_max():
         print("нечётные числа отсутствуют!")
     else:
         print(max1)
+
+# Задание 18. Для введенного списка построить список с номерами элемента, 
+# который повторяется наибольшее число раз.
+
+def index_max_count_el():
+    x = input("Введите число: ")
+    a = []
+    while (x != ""):
+        if x.isdigit():
+            a.append(int(x))
+        else:
+            print("Неверный ввод!")
+        x = input("Введите число: ")
+    max_count=0
+    el=0
+    for i in range(len(a)):
+        if(max_count<a.count(a[i])):
+            max_count=a.count(a[i])
+            el=a[i]
+    b=[]
+    for i in range(len(a)):
+        if(a[i]==el):
+            b.append(i+1)
+    print(b)
