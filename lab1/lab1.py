@@ -303,7 +303,35 @@ def mid_sqr_dev():
     print(a)
     print(b)
 
+# Задание 14. Отсортировать строки в порядке увеличения среднего количества «зеркальных» троек
+# (например, «ada») символов в строке.
 
+def sort_count_mirror():
+    x = str(input("Введите строку: "))
+    a = []
+    while(x):
+
+        a.append(x)
+        x = str(input("Введите строку: "))
+    b=[]
+    for word in a:
+        c=0
+        if (len(word) >= 3):
+            for i in range(1,len(word)-1):
+                if(word[i-1]==word[i+1]):
+                    c+=1
+        b.append(c)
+    for i in range(len(a)-1):
+        for j in range(i+1,len(a)):
+            if(b[i]>b[j]):
+                t=a[i]
+                a[i]=a[j]
+                a[j]=t
+                u=b[i]
+                b[i]=b[j]
+                b[j]=u
+    print(a)
+    print(b)
 
 
 
