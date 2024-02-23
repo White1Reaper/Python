@@ -1,3 +1,16 @@
+# Тангиев Руслан, 37/1
+
+# Лабораторная работа №3.
+
+# Эадание 1. Вариант 12. Написать программу, демонстрирующую работу с объектами
+# двух типов T1 и T2, для чего создать систему соответствующих классов.
+# Каждый объект должен иметь идентификатор (в виде произвольной строки
+# символов) и одно или несколько полей для хранения состояния (текущего
+# значения) объекта
+# объекты: triangle, pentagon
+# методы: is_intersect, compare
+# Задание 2. Необходимо предусмотреть генерацию и обработку
+# исключений для возможных ошибочных ситуаций
 class Point:
     def __init__(self, x,y):
         self.x = float(x)
@@ -11,22 +24,38 @@ class Triangle:
 def define_triangle():
     points_of_triangele=[]
     while len(points_of_triangele)<3:
-        x, y = map(str, input("Введите координаты вершины треугольника (x,y): ").split())
-        if x.isdigit() and y.isdigit():
-            point=Point(float(x), float(y))
-            points_of_triangele.append(point)
-        else:
-            print("Неверный ввод!")
+        try:
+            x, y = map(str, input("Введите координаты вершины треугольника (x,y): ").split())
+            try:
+                float(x)
+                try:
+                    float(y)
+                    point=Point(float(x), float(y))
+                    points_of_triangele.append(point)
+                except ValueError:
+                    print("Неверный ввод координаты y!")
+            except ValueError:
+                print("Неверный ввод координаты х!")
+        except ValueError:
+            print("Необходимо ввести ровно 2 значения через пробел!")
     return Triangle(points_of_triangele)
 def define_pentagon():
     points_of_pentagon = []
     while len(points_of_pentagon) < 5:
-        x, y = map(str, input("Введите координаты вершины пятиугольникм (x,y): ").split())
-        if x.isdigit() and y.isdigit():
-            point = Point(float(x), float(y))
-            points_of_pentagon.append(point)
-        else:
-            print("Неверный ввод!")
+        try:
+            x, y = map(str, input("Введите координаты вершины треугольника (x,y): ").split())
+            try:
+                float(x)
+                try:
+                    float(y)
+                    point = Point(float(x), float(y))
+                    points_of_pentagon.append(point)
+                except ValueError:
+                    print("Неверный ввод координаты y!")
+            except ValueError:
+                print("Неверный ввод координаты х!")
+        except ValueError:
+            print("Необходимо ввести ровно 2 значения через пробел!")
     return Pentagon(points_of_pentagon)
 def det(point1,point2):
     return point1.x*point2.y-point1.y*point2.x
@@ -88,20 +117,4 @@ def work_with_objects():
     compare(triangle,pentagon)
 
 work_with_objects()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
