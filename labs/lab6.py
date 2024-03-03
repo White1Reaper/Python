@@ -52,6 +52,20 @@ cursor.execute("""INSERT INTO Claims (policy_id, client_id, claim_date, amount) 
 (2, 2, '2023-05-01', 700),
 (3, 3, '2023-06-01', 900)""")
 
+# Задание 4. Написать не менее трех статистических запросов (SELECT).
+
+cl=cursor.execute('SELECT * FROM Clients')
+for cl1 in cl:
+    print(cl1)
+
+print()
+pl=cursor.execute('SELECT * FROM Policies')
+for pl1 in pl:
+    print(pl1)
+print()
+clim=cursor.execute('SELECT * FROM Claims WHERE claim_id="2"')
+for cl1 in clim:
+    print(cl1)
 
 cursor.execute("DROP TABLE Claims")
 cursor.execute("DROP TABLE Policies")
