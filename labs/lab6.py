@@ -6,10 +6,12 @@
 import sqlite3
 import http.server
 import socketserver
-insurance_company = sqlite3.connect('insurance-company.db')
+insurance_company = sqlite3.connect('./cgi-bin/insurance-company.db')
 # Эадание 2. БД должна содержать не менее трех связанных таблиц.
 cursor = insurance_company.cursor()
-
+# cursor.execute("DROP TABLE Clients")
+# cursor.execute("DROP TABLE Claims")
+# cursor.execute("DROP TABLE Policies")
 cursor.execute("""CREATE TABLE IF NOT EXISTS Policies (
 policy_id INTEGER PRIMARY KEY,
 policy_number TEXT NOT NULL,
@@ -67,13 +69,93 @@ print()
 clim=cursor.execute('SELECT * FROM Claims WHERE claim_id="2"')
 for cl1 in clim:
     print(cl1)
+# Задание 7. Осуществить вывод содержимого таблиц.
+class MyHandler(http.server.BaseHTTPRequestHandler):
+
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
+
+        html = """
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>insurance company</title>
+        </head>
+        <body>
+          <h1>clients</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>fio</th>
+                <th>birth date</th>
+                <th>address</th>
+              </tr>
+            </thead>
+            <tbody>
+        """
+
+        for row in cursor.execute('SELECT * FROM Clients'):
+            html += "<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>".format(*row)
+
+        html += """
+            </tbody>
+          </table>
+
+          <h1>policies</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>policy number</th>
+                <th>start datчe</th>
+                <th>end date</th>
+                <th>amount</th>
+              </tr>
+            </thead>
+            <tbody>
+        """
+        for row in cursor.execute('SELECT * FROM Policies'):
+            html += "<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>".format(*row)
+
+        html += """
+            </tbody>
+          </table>
+
+          <h1>claims</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>policy</th>
+                <th>client</th>
+                <th>claim date</th>
+                <th>amount</th>
+              </tr>
+            </thead>
+            <tbody>
+        """
+        for row in cursor.execute('SELECT * FROM Claims'):
+            html += "<tr><td>{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>".format(*row)
+
+        html += """
+            </tbody>
+          </table>
+        </body>
+        </html>
+        """
+
+        self.wfile.write(html.encode('utf-8'))
+
 # Задание 5. Создать CGI-сервер.
 PORT = 8000
-Handler = http.server.CGIHTTPRequestHandler
-httpd = socketserver.TCPServer(("", PORT), Handler)
+httpd = socketserver.TCPServer(("", PORT), MyHandler)
 httpd.serve_forever()
-cursor.execute("DROP TABLE Claims")
-cursor.execute("DROP TABLE Policies")
-cursor.execute("DROP TABLE Clients")
+
+insurance_company.commit()
+cursor.close()
+
 
 insurance_company.close()
