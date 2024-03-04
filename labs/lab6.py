@@ -4,7 +4,8 @@
 
 # Эадание 1. Вариант 12. Создать БД в соответствии с предметной областью: страховая компания.
 import sqlite3
-
+import http.server
+import socketserver
 insurance_company = sqlite3.connect('insurance-company.db')
 # Эадание 2. БД должна содержать не менее трех связанных таблиц.
 cursor = insurance_company.cursor()
@@ -66,7 +67,11 @@ print()
 clim=cursor.execute('SELECT * FROM Claims WHERE claim_id="2"')
 for cl1 in clim:
     print(cl1)
-
+# Задание 5. Создать CGI-сервер.
+PORT = 8000
+Handler = http.server.CGIHTTPRequestHandler
+httpd = socketserver.TCPServer(("", PORT), Handler)
+httpd.serve_forever()
 cursor.execute("DROP TABLE Claims")
 cursor.execute("DROP TABLE Policies")
 cursor.execute("DROP TABLE Clients")
