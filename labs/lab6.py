@@ -73,8 +73,7 @@ def database_and_server():
     clim=cursor.execute('SELECT * FROM Claims WHERE claim_id="2"')
     for cl1 in clim:
         print(cl1)
-    # Задание 6. Создать форму (формы) для заполнения полей таблиц.
-    # Задание 7. Осуществить вывод содержимого таблиц.
+
     class MyHandler(http.server.BaseHTTPRequestHandler):
         def do_POST(self):
             # Получение данных из формы
@@ -102,7 +101,7 @@ def database_and_server():
                 amount = form.getvalue('amount')
                 cursor.execute("INSERT INTO Claims (policy_id, client_id, claim_date, amount) VALUES (?, ?, ?, ?)",(policy_id, client_id, claim_date, amount))
             insurance_company.commit()
-            # Экспорт/импорт таблицы в JSON
+            # Задание 8. Экспорт/импорт таблицы в JSON
             if 'addclient' in form:
                 cursor.execute('SELECT * FROM Clients')
                 table_out = json.dumps(cursor.fetchall())
@@ -150,7 +149,8 @@ def database_and_server():
             self.send_response(200)
             self.send_header('Content-type', 'text/html')
             self.end_headers()
-
+            # Задание 6. Создать форму (формы) для заполнения полей таблиц.
+            # Задание 7. Осуществить вывод содержимого таблиц.
             html = """
             <!DOCTYPE html>
             <html>
