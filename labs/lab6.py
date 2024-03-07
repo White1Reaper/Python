@@ -3,10 +3,12 @@
 # Лабораторная работа №6.
 
 # Эадание 1. Вариант 12. Создать БД в соответствии с предметной областью: страховая компания.
+import json
 import sqlite3
 import http.server
 import socketserver
 import cgi
+
 def database_and_server():
     insurance_company = sqlite3.connect('./cgi-bin/insurance-company.db')
     # Эадание 2. БД должна содержать не менее трех связанных таблиц.
@@ -100,7 +102,46 @@ def database_and_server():
                 amount = form.getvalue('amount')
                 cursor.execute("INSERT INTO Claims (policy_id, client_id, claim_date, amount) VALUES (?, ?, ?, ?)",(policy_id, client_id, claim_date, amount))
             insurance_company.commit()
+            # Экспорт/импорт таблицы в JSON
+            if 'addclient' in form:
+                cursor.execute('SELECT * FROM Clients')
+                table_out = json.dumps(cursor.fetchall())
 
+                with open('Clients.json', 'w') as f:
+                    f.write(table_out)
+                with open('Clients.json', 'r') as f:
+                    json_data = f.read()
+
+                table_in= json.loads(json_data)
+
+                for st in table_in:
+                    print(st)
+            elif 'addclaim' in form:
+                cursor.execute('SELECT * FROM Claims')
+                table_out = json.dumps(cursor.fetchall())
+
+                with open('Claims.json', 'w') as f:
+                    f.write(table_out)
+                with open('Claims.json', 'r') as f:
+                    json_data = f.read()
+
+                table_in= json.loads(json_data)
+
+                for st in table_in:
+                    print(st)
+            elif 'addpolicy' in form:
+                cursor.execute('SELECT * FROM Policies')
+                table_out = json.dumps(cursor.fetchall())
+
+                with open('Policies.json', 'w') as f:
+                    f.write(table_out)
+                with open('Policies.json', 'r') as f:
+                    json_data = f.read()
+
+                table_in= json.loads(json_data)
+
+                for st in table_in:
+                    print(st)
             self.send_response(303)
             self.send_header('location','/')
             self.send_header('Content-type', 'text/html')
