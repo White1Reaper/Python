@@ -3,9 +3,9 @@ from .models import Client, Policy, Claim
 
 # Задание 3. Построить отображение моделей в панели администратора, используя различные списки отображения и фильтры.
 # Задание 5. Возможность добавления записи в модели (на главной/другой странице).
+# Задание 6. Возможность детального просмотра информации о каждой записи из главной модели (таблицы).
 class ClientAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'email')
-
 class PolicyAdmin(admin.ModelAdmin):
     list_display = ('policy_number', 'start_date', 'end_date', 'customer')
     list_filter = ('start_date', 'end_date')
