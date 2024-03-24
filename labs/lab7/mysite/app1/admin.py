@@ -13,7 +13,6 @@ class ClaimAdmin(admin.ModelAdmin):
     list_display = ('claim_number', 'date_filed', 'description', 'policy')
     list_filter = ('date_filed',)
 
-# Регистрируем классы ModelAdmin в административной панели
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Policy, PolicyAdmin)
 admin.site.register(Claim, ClaimAdmin)
