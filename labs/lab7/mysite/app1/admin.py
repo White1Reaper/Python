@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import Client, Policy, Claim
 
 # Задание 3. Построить отображение моделей в панели администратора, используя различные списки отображения и фильтры.
+# Задание 5. Возможность добавления записи в модели (на главной/другой странице).
 class ClientAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'email')
 
