@@ -1,0 +1,20 @@
+<!-- Задание 7. Возможность модифицирования данных в моделях со стороны клиентской части.-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Client</title>
+</head>
+<body>
+    <h1>Update Client</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" value="{{ client.first_name }}"><br>
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" value="{{ client.last_name }}"><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="{{ client.email }}"><br>
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>
