@@ -6,8 +6,6 @@ class Client(models.Model):
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
     objects = models.Manager()
-    def __str__(self):
-        return f'{self.first_name} {self.last_name}'
 
 class Policy(models.Model):
     policy_number = models.CharField(max_length=50)
@@ -15,8 +13,6 @@ class Policy(models.Model):
     end_date = models.DateField()
     customer = models.ForeignKey(Client, on_delete=models.CASCADE)
     objects = models.Manager()
-    def __str__(self):
-        return self.policy_number
 
 class Claim(models.Model):
     claim_number = models.CharField(max_length=50)
@@ -24,5 +20,3 @@ class Claim(models.Model):
     description = models.TextField()
     policy = models.ForeignKey(Policy, on_delete=models.CASCADE)
     objects = models.Manager()
-    def __str__(self):
-        return self.claim_number
